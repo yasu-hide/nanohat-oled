@@ -1,0 +1,3 @@
+[submodule "nanohat-oled-nodejs"]
+	path = nanohat-oled-nodejs
+	url = https://github.com/yasu-hide/nanohat-oled-nodejs.git

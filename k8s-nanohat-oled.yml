@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nanohat-oled
+  labels:
+    name: nanohat-oled
+spec:
+  selector:
+    matchLabels:
+      app: nanohat-oled
+  template:
+    metadata:
+      labels:
+        app: nanohat-oled
+    spec:
+      containers:
+      - name: nanohat-oled
+        image: vet5lqplpecmpnqb/nanohat-oled:latest
+        resources:
+          limits:
+            memory: "64Mi"
+            cpu: "500m"
+        lifecycle:
+          postStart:
+            exec:
+              command: [ '/bin/mount', '-o', 'rw,remount', '/sys' ]
+        securityContext:
+          capabilities:
+            add: [ "SYS_ADMIN"]
+          privileged: true
+          allowPrivilegeEscalation: true
+        env:
+          - name: TZ
+            value: Asia/Tokyo
