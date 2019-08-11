@@ -20,7 +20,7 @@ spec:
         resources:
           limits:
             memory: "64Mi"
-            cpu: "500m"
+            cpu: "100m"
         lifecycle:
           postStart:
             exec:
