@@ -13,6 +13,7 @@ RUN npm config set unsafe-perm true \
 FROM node:11-stretch-slim
 ENV TZ 'Asia/Tokyo'
 ARG ARCH='aarch64'
+ARG LOGO_URL="https://github.com/friendlyarm/BakeBit/raw/master/Software/Python/friendllyelec.png"
 WORKDIR /tmp
 
 COPY ./nanohat-oled-nodejs/gpioemitter.js /tmp/gpioemitter.js
@@ -39,5 +40,6 @@ COPY --from=builder /usr/lib/${ARCH}-linux-gnu/libXdmcp.so.6 /usr/lib/${ARCH}-li
 COPY --from=builder /lib/${ARCH}-linux-gnu/libexpat.so.1 /lib/${ARCH}-linux-gnu/libexpat.so.1
 COPY --from=builder /lib/${ARCH}-linux-gnu/libbsd.so.0 /lib/${ARCH}-linux-gnu/libbsd.so.0
 
+ADD ${LOGO_URL} /tmp/logo_img
 ENTRYPOINT ["node"]
 CMD ["/tmp/index.js"]
