@@ -1,4 +1,4 @@
-FROM node:11-stretch-slim as builder
+FROM node:16.20.1-bookworm-slim as builder
 WORKDIR /tmp
 RUN apt-get update \
     && apt-get install -y python build-essential pkg-config libcairo2-dev \
@@ -10,7 +10,7 @@ RUN npm config set unsafe-perm true \
     && npm install \
     && npm config set unsafe-perm false
 
-FROM node:11-stretch-slim
+FROM node:16.20.1-bookworm-slim
 ENV TZ 'Asia/Tokyo'
 ARG ARCH='aarch64'
 ARG LOGO_URL="https://github.com/friendlyarm/BakeBit/raw/master/Software/Python/friendllyelec.png"
